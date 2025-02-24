@@ -1,6 +1,11 @@
 {
+    "$schema": "https://railway.app/railway.schema.json",
     "build": {
-      "dockerfile": "Dockerfile"
+      "builder": "DOCKERFILE"
+    },
+    "deploy": {
+      "startCommand": "gunicorn --bind 0.0.0.0:8000 aplicacao.wsgi:application",
+      "restartPolicyType": "ALWAYS"
     }
   }
   
