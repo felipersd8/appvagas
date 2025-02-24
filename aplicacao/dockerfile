@@ -1,0 +1,26 @@
+# Usa a imagem oficial do Python
+FROM python:3.11
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia os arquivos do projeto para dentro do container
+COPY . .
+
+# Instala as dependências do projeto
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Define a variável de ambiente do Django
+ENV DJANGO_SETTINGS_MODULE=aplicacao.settings
+ENV PYTHONUNBUFFERED=1
+
+# Executa as migrações e coleta arquivos estáticos
+RUN python manage.py migrate
+RUN python manage.py collectstatic --noinput
+
+# Expor a porta da aplicação
+EXPOSE 8000
+
+# Comando para rodar o servidor Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "aplicacao.wsgi:application"]

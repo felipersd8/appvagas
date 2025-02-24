@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - App de Vagas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'aplicacao/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Cabeçalho -->
+        <header>
+            <div class="container">
+                <h1>App de Vagas</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/admin">Administração</a></li>
+                        <li><a href="/api">API</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Seção Hero (Destaque Inicial) -->
+            <section class="hero" style="background-image: url('{% static 'aplicacao/bg.jpg' %}');">
+                <div class="container">
+                    <h2>Bem-vindo ao App de Vagas!</h2>
+                    <p>Encontre a vaga dos seus sonhos de forma rápida e eficiente.</p>
+                    <a href="/api/vagas" class="btn">Ver Vagas</a>
+                </div>
+            </section>
+
+            <!-- Seção de Recursos (Ícones lado a lado) -->
+            <section class="features-grid">
+                <div class="feature">
+                    <img src="{% static 'aplicacao/jobs.png' %}" alt="Empregos">
+                    <h3>Empregos Atualizados</h3>
+                    <p>Encontre as vagas mais recentes no mercado de trabalho.</p>
+                </div>
+                <div class="feature">
+                    <img src="{% static 'aplicacao/search.png' %}" alt="Busca">
+                    <h3>Filtragem Inteligente</h3>
+                    <p>Use filtros avançados para encontrar a vaga ideal.</p>
+                </div>
+                <div class="feature">
+                    <img src="{% static 'aplicacao/apply.png' %}" alt="Candidatar-se">
+                    <h3>Candidatura Fácil</h3>
+                    <p>Candidate-se a vagas com apenas um clique.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Rodapé Fixo -->
+        <footer>
+            <p>&copy; 2025 - App de Vagas. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

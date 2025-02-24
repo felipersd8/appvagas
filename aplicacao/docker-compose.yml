@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  vagas_app:   # ⬅ Nome do aplicativo Django
+    build: .
+    container_name: vagas_django
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - app_network
+    volumes:
+      - static_volume:/app/static
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - app_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - static_volume:/app/static
+    depends_on:
+      - vagas_app   # ⬅ Alterado para o novo nome do serviço
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: overlay
+
+volumes:
+  postgres_data:
+  static_volume:
